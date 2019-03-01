@@ -1,0 +1,24 @@
+server:
+  port: 8888
+
+spring:
+  application:
+    name: admin-server
+  boot:
+    admin:
+      context-path: /sba
+
+management:
+  port: 8889
+  security:
+    enabled: false # spring-boot 1.5.2之后严格执行安全策略，所以需要配置这个为false ,否则很多点监控不到
+
+eureka:
+  instance:
+    hostname: ADMIN-SERVER
+    prefer-ip-address: true
+  client:
+    service-url:
+#      defaultZone: http://localhost:8081/eureka
+      defaultZone: http://localhost:7900/eureka,http://localhost:7800/eureka
+#      defaultZone: http://eurekaserver1:8900/eureka,http://eurekaserver2:8900/eureka

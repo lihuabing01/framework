@@ -1,0 +1,34 @@
+                                                                                                                                                                                                                           version: '2'
+services:
+  apigateway:
+#    image: raynspace/api-gateway:1.0.0
+    build: ./api-gateway/src/main/docker
+    ports:
+      - "9090:9090"
+
+  adminserver:
+#    image: raynspace/admin-server:1.0.0
+    build: ./admin-server/src/main/docker
+    ports:
+      - "8888:8888"
+
+  commonapi:
+#    image: raynspace/common-api:1.0.0
+     build: ./common-api/src/main/docker
+
+  eurekaserver1:
+#    image: raynspace/eureka-server:1.0.0
+    build: ./eurekaserver/src/main/docker
+    ports:
+      - "7900:8900"
+    environment:
+      - spring.profiles.active=test_ha_1
+
+  eurekaserver2:
+#    image: raynspace/eureka-server:1.0.0
+    #hostname: eurekaserver2
+    build: ./eurekaserver/src/main/docker
+    ports:
+      - "7800:8900"
+    environment:
+      - spring.profiles.active=test_ha_2

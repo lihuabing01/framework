@@ -1,0 +1,39 @@
+server:
+  port: 9090
+
+spring:
+  application:
+    name: api-gateway
+
+management:
+  security:
+    enabled: false
+#  context-path: /manage
+
+eureka:
+  instance:
+    prefer-ip-address: true
+  client:
+    service-url:
+      defaultZone: http://localhost:8900/eureka
+#      defaultZone: http://localhost:7900/eureka,http://localhost:7800/eureka
+#       defaultZone: http://eurekaserver1:8900/eureka,http://eurekaserver2:8900/eureka
+# zuul为每个eureka服务都默认创建了匹配规则：以服务名作为请求前缀
+zuul:
+  routes:
+    common-api:
+      path: /common-api/**
+      serviceId: COMMON-API
+  # 配置不需要自动创建匹配规则的服务
+  ignored-services:
+  # 配置不需要路由的url路径
+  ignored-patterns:
+  add-host-header: true
+
+info:
+  app:
+    name: "@project.name@"
+    description: "@project.description@"
+    version: "@project.version@"
+    spring-boot-version: "@project.parent.version@"
+

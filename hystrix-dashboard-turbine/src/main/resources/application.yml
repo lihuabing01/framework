@@ -1,0 +1,17 @@
+spring:
+  application:
+    name: hystrix-dashboard-turbine
+
+server:
+  port: 9998
+turbine:
+  app-config: financial-assistant,BUSINESS-AUTH
+  cluster-name-expression: new String("default")
+
+eureka:
+  instance:
+    prefer-ip-address: true
+  client:
+    service-url:
+      defaultZone: http://192.168.64.53:8900/eureka
+

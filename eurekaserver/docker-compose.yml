@@ -1,0 +1,16 @@
+version: '2'
+services:
+  eurekaserver1:
+    image: raynspace/eureka-server:1.0.0
+    ports:
+      - "7900:8900"
+    environment:
+      - spring.profiles.active=test_ha_1
+
+  eurekaserver2:
+    image: raynspace/eureka-server:1.0.0
+    #hostname: eurekaserver2
+    ports:
+      - "7800:8900"
+    environment:
+      - spring.profiles.active=test_ha_2
